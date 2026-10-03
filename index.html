@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Marriage Memories</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f4ef;
+      color: #222;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 35px 15px;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 15px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      margin: 25px 0 15px;
+      font-size: 24px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card video {
+      width: 100%;
+      display: block;
+      background: black;
+    }
+
+    .card-content {
+      padding: 10px;
+    }
+
+    .filename {
+      font-size: 14px;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .download {
+      display: inline-block;
+      background: #222;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      margin-top: 30px;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .card img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>💍 Marriage Memories</h1>
+    <p>Photos & Videos</p>
+  </header>
+
+  <main class="container">
+
+    <input
+      type="search"
+      id="search"
+      class="search"
+      placeholder="Search photos or videos..."
+    >
+
+    <h2 class="section-title">📸 Photos</h2>
+
+    <div class="gallery" id="photoGallery">
+
+      <!-- Example photo -->
+      <div class="card media-card" data-name="sample photo">
+        <img src="photos/sample.jpg" alt="Marriage Photo">
+
+        <div class="card-content">
+          <div class="filename">Sample Photo</div>
+
+          <a
+            class="download"
+            href="photos/sample.jpg"
+            download>
+            ⬇ Download
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+
+    <h2 class="section-title">🎥 Videos</h2>
+
+    <div class="gallery" id="videoGallery">
+
+      <!-- Example video -->
+      <div class="card media-card" data-name="sample video">
+
+        <video controls preload="metadata">
+          <source src="videos/sample.mp4" type="video/mp4">
+          Your browser does not support video.
+        </video>
+
+        <div class="card-content">
+          <div class="filename">Sample Video</div>
+
+          <a
+            class="download"
+            href="videos/sample.mp4"
+            download>
+            ⬇ Download
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    Marriage Memories © 2026
+  </footer>
+
+
+  <script>
+
+    const search = document.getElementById("search");
+
+    search.addEventListener("input", function () {
+
+      const text = this.value.toLowerCase();
+
+      const cards = document.querySelectorAll(".media-card");
+
+      cards.forEach(function(card) {
+
+        const name = card.dataset.name.toLowerCase();
+
+        if (name.includes(text)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+  </html>
